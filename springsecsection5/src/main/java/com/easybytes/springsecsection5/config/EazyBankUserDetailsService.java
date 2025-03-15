@@ -12,6 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * 사용자 정보 조회에 집중
+ */
 @RequiredArgsConstructor
 @Service
 public class EazyBankUserDetailsService implements UserDetailsService {
