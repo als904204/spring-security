@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,8 +23,9 @@ public class ProjectSecurityConfig {
         //http.authorizeHttpRequests((requests) -> requests.anyRequest().authenticated());
         http.authorizeHttpRequests((requests) -> requests
             .requestMatchers("/myAccount", "/myBalance", "/myCards", "/myLoans").authenticated()
-            .requestMatchers("/notices", "/contact", "/error").permitAll());
+            .requestMatchers("/notices", "/contact", "/error","/register").permitAll());
 
+        http.csrf(AbstractHttpConfigurer::disable);
         http.formLogin(Customizer.withDefaults());
         http.httpBasic(Customizer.withDefaults());
 
